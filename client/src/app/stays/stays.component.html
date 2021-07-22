@@ -1,0 +1,64 @@
+<div class="container">
+    <h1 class="text-center">My Stays</h1>
+    <h1 *ngIf="dataRev.length==0 && dataNotRev.length==0" class="text-center">You Didn't Go Anywhere Yet :(</h1>
+    <div class="row">
+        <div class="col-lg-4" *ngFor="let reservation of dataRev">
+            <div class="card">
+                <div class="card-body btn" (click)="navToHouse(reservation?.house_id)">
+                    <img class="img-thumbnail" src="../../assets/public/house_pics/{{reservation?.images[0]}}" alt="">
+                    <h4 class="text-center">
+                        {{reservation?.house_name}}
+                    </h4>
+                    <h4 class="text-center">
+                        {{reservation?.grade}} <i class="fas fa-star"></i>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4" *ngFor="let reservation of dataNotRev">
+            <div class="card">
+                <div class="card-body">
+                    <div class="btn" (click)="navToHouse(reservation?.house_id)">
+                        <img class="img-thumbnail" src="../../assets/public/house_pics/{{reservation?.images[0]}}" alt="">
+                        <h4 class="text-center">
+                            {{reservation?.house_name}}
+                        </h4>
+                    </div>
+                    <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#exampleModalCenter" (click)="setHouseId(reservation?.house_id)">Review</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Let us now if you liked it!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="onReview()" #reviewform="ngForm">
+                <div class="modal-body">
+                    <div class="alert-info" role="alert">
+                        {{ message }}
+                    </div>
+                    <fieldset class="rating">
+                        <input type="radio" id="star5" name="rating" value="5" ngModel/><label class="full" for="star5"></label>
+                        <input type="radio" id="star4" name="rating" value="4" ngModel/><label class="full" for="star4"></label>
+                        <input type="radio" id="star3" name="rating" value="3" ngModel/><label class="full" for="star3"></label>
+                        <input type="radio" id="star2" name="rating" value="2" ngModel/><label class="full" for="star2"></label>
+                        <input type="radio" id="star1" name="rating" value="1" ngModel/><label class="full" for="star1"></label>
+                    </fieldset>
+                    <br>
+                    <textarea name="comment" class="form-control" type="input" cols="40" rows="5" placeholder="Tell us a bit more..." required ngModel></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Submit Review</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

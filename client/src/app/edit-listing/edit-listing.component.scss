@@ -1,0 +1,30 @@
+h1{
+    color: #fff;
+    padding-top: 3cm;
+}
+
+
+.container{
+    background-color: transparentize($color: #ffffff, $amount: 0.15);
+    margin: 2cm 0;
+    margin-top: 1cm;
+    border-radius: 10px;
+}
+
+.top-container{
+    padding-top: 0.5cm;
+}
+
+input{
+    margin-right: 0.2cm;
+}
+
+select{
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.btn{
+    margin: 0.3cm 0;
+    color: #fff;
+}

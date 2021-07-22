@@ -1,0 +1,102 @@
+<div class="content">
+    <img id="bg" src="../assets/skunze_beach.jpg" alt="">
+</div>
+
+<header>
+    <nav id="main" class="navbar navbar-expand-md navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img class="logo" src="../assets/favicon.png" alt=""> Rentserve</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div *ngIf="!isUserLoggedIn" class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="users/login">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="users/register">Register</a>
+                    </li>
+                </ul>
+            </div>
+            <div *ngIf="isUserLoggedIn" class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
+                            <div class="dropdown-menu dm-small" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" routerLink="users/profile">My Profile</a>
+                                <a class="dropdown-item" routerLink="users/host-page">Host Page</a>
+                                <a class="dropdown-item" routerLink="users/my-stays">My Stays</a>
+                                <a class="dropdown-item" routerLink="users/messages">My Messages</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="users/logout">Log out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="container">
+    <router-outlet (activate)="onActivate()"></router-outlet>
+</section>
+
+<footer class="footer mt-auto footer-distributed">
+    <div class="footer-left">
+
+        <a href="">
+            <img id="footer-logo" src="../assets/favicon.png" alt="" width="130" height="130">
+        </a>
+
+        <p class="footer-links">
+            <a href="users/login">Login</a> ·
+            <a href="users/register">Register</a> ·
+            <a href="#contact">Contact Us</a>
+        </p>
+
+        <p class="footer-company-name">RENTSERVE SA © 2020</p>
+    </div>
+
+    <div class="footer-center">
+
+        <div>
+            <i class="fa fa-map-marked-alt"></i>
+            <p>Athens</p>
+        </div>
+
+        <div>
+            <i class="fas fa-phone"></i>
+            <p>+30 210 000 0000</p>
+        </div>
+
+        <div>
+            <i class="fas fa-envelope"></i>
+            <p><a href="mailto:info@rentserve.gr">info@rentserve.gr</a></p>
+        </div>
+
+    </div>
+
+    <div class="footer-right">
+
+        <p class="footer-company-about">
+            <span>About Us</span> Our passion is to give a unique experience to every individual.
+        </p>
+
+        <div class="footer-icons">
+
+            <a target="_blank"><i class="fab fa-facebook-square"></i></a>
+            <a target="_blank"><i class="fab fa-twitter"></i></a>
+            <a target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+
+    </div>
+
+</footer>

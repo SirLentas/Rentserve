@@ -1,0 +1,93 @@
+<h1 class="text-center">New Listing</h1>
+<div class="container">
+    <div class="row top-container">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 map" id="map"></div>
+        <div class="col-md-1"></div>
+    </div>
+    <form (ngSubmit)="onAddListing()" #addform="ngForm">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input class="form-control" type="text" id="country" value="" placeholder="Country" name="country" ngModel required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" id="name" name="name" ngModel value="" placeholder="Name" required />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="number" name="size" id="size" ngModel value='' min="1" placeholder="Size" required />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="number" name="min_days" id="min_days" ngModel value='' min="1" placeholder="Minimun number of Nights" required />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" min="{{today}}" type="date" id="a_from" name="a_from" ngModel required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" min="{{today1}}" type="date" id="a_to" name="a_to" ngModel required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="number" id="guests" name="guests" ngModel value="" min="" step="1" placeholder="Capacity" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="number" name="cost" id="cost" ngModel value="" min="1" placeholder="Cost per night" required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="h_type">
+                        Type of Property
+                    </label><br>
+                    <select id="h_type" name="h_type" ngModel required>
+                        <option value="">Select</option>
+                        <option value="private room">Private Room</option>
+                        <option value="public room">Public Room</option>
+                        <option value="house">House</option>
+                    </select> <br>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <input type="checkbox" id="wifi" name="wifi" value="true" ngModel>
+                        <label for="wifi"> Wifi </label><br>
+                        <input type="checkbox" id="oven" name="oven" value="true" ngModel>
+                        <label for="ven"> Oven </label><br>
+                        <input type="checkbox" id="heating" name="heating" value="true" ngModel>
+                        <label for="heating"> Heating </label><br>
+                        <input type="checkbox" id="cooling" name="cooling" value="true" ngModel>
+                        <label for="cooling"> Cooling </label><br>
+                    </div>
+                    <div class="col-4">
+                        <input type="checkbox" id="tv" name="tv" value="true" ngModel>
+                        <label for="tv"> TV </label><br>
+                        <input type="checkbox" id="parking" name="parking" value="true" ngModel>
+                        <label for="parking"> Parking </label><br>
+                        <input type="checkbox" id="elevator" name="elevator" value="true" ngModel>
+                        <label for="elevator"> Elevator </label> <br>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" type="text" name="des" id="des" value='' ngModel placeholder="Add a description for your house">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="info" id="info" value='' ngModel placeholder="Add more info & rules for your house">
+                </div>
+                <div class="form-group">
+                    <label for="files">Select images:</label><br>
+                    <input type="file" multiple name="files" (change)="onFileSelect($event)" accept="images/*" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8"></div>
+            <div class="col-lg-4">
+                <div class="alert-warning text-center" role="alert">
+                    {{ message }}
+                  </div>
+                <button type="submit" class="btn btn-danger btn-block">Add Listing</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+<h1 class="text-center">Admin Page</h1>
+
+
+<div class="container" id="top">
+    <div class="text-center alert-success">{{h_message}}</div>
+    <div class="row">
+        <button class="btn btn-outline-dark btn-block" (click)="onHouses()">Export all Houses from Database</button>
+    </div>
+</div>
+
+<div class="container">
+    <h3>Users</h3>
+    <div class="text-center alert-success">{{u_message}}</div>
+    <!-- <div class="row text-center align-items-center" *ngFor="let user of data"> -->
+    <div class="row text-center align-items-center" *ngFor="let user of data | paginate: {id:'listing-pagination',itemsPerPage:5,currentPage:page,totalItems:totalRecords}">
+        <hr>
+        <div class="col-lg-2">
+            <img class="img-thumbnail" src="../../assets/public/profile_pics/{{user?.profile_pic}}" alt="">
+        </div>
+        <div class="col-lg-2">
+            {{user?.username}}
+        </div>
+        <div class="col-lg-2">
+            {{user?.email}}
+        </div>
+        <div class="col-lg-2">
+            {{user?.phone}}
+        </div>
+        <div class="col-lg-4">
+            <button class="btn btn-outline-dark" (click)="onUserReviews(user?.user_id)">User Reviews</button>
+            <button class="btn btn-outline-dark" (click)="onUserReservations(user?.user_id)">User Reservations</button>
+            <button *ngIf="user?.host_appl" class="btn btn-success" (click)="onAccept(user?.user_id)">Accept <i class="fas fa-check"></i> </button>
+            <button *ngIf="user?.host_appl" class="btn btn-danger" (click)="onReject(user?.user_id)">Reject <i class="fas fa-times"></i> </button>
+            <button *ngIf="user?.is_host" class="btn btn-info" (click)="onHostReviews(user?.user_id)">Host Reviews</button>
+        </div>
+    </div>
+    <br>
+</div>
+
+<div class="container" id="nav">
+    <pagination-controls id="listing-pagination" maxSize="5" directionLinks="true" (pageChange)="page=$event"></pagination-controls>
+</div>

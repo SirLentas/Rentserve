@@ -1,0 +1,281 @@
+<div class="container">
+    <div class="row top-container">
+        <div class="col-lg-8">
+            <a href="../../assets/public/house_pics/{{images[0]}}" data-fancybox="gallery"><img id="mainPic" class="img-thumbnail" src="../../assets/public/house_pics/{{images[0]}}" alt=""></a>
+        </div>
+        <div class="col-lg-4">
+            <div class="d-none d-lg-block pictures">
+                <a href="../../assets/public/house_pics/{{images[1]}}" data-fancybox="gallery"><img id="first-img" class="img-thumbnail" src="../../assets/public/house_pics/{{images[1]}}" alt=""></a>
+                <a href="../../assets/public/house_pics/{{images[2]}}" data-fancybox="gallery"><img class="img-thumbnail" src="../../assets/public/house_pics/{{images[2]}}" alt=""></a>
+                <div *ngFor="let img of images | slice:3; let i = index;" class="d-none">
+                    <a href="../../assets/public/house_pics/{{img}}" data-fancybox="gallery"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-8">
+                    <div>{{type}}</div>
+                    <h4>
+                        {{data?.house_name}}
+                    </h4>
+                    <div>{{data?.adress}}, {{data?.city}}, {{data?.country}}</div>
+                    <div>{{data?.capacity}} Bed(s)</div>
+                    <div>House Rating: {{data?.avgrating}} <i *ngIf="data?.avgrating!=null" class="fas fa-star"></i> <span *ngIf="data?.avgrating==null">No reviews yet</span> </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-center">
+                        <img id="profile-icon" class="img-thumbnail rounded-circle align-items-end" src="{{pathHost}}" alt="">
+                        <div>{{data?.username}}</div>
+                        <div>Host Rating: {{avgHostR}} <i *ngIf="avgHostR!=null" class="fas fa-star"></i> ({{countRH}})</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div style="padding: 0.5cm;">
+                <p style="text-align: right;">Price per night {{data?.cost}} $</p>
+
+                <div *ngIf="costTotal">
+                    <h3 style="text-align: right;">TOTAL COST {{costTotal}} $ </h3>
+                    <div *ngIf="forRes && LoggedIn" class="row">
+                        <a style="color: white;" class="btn btn-danger btn-block" (click)="ReserveHouse()">Reserve</a>
+                    </div>
+                    <div *ngIf="!LoggedIn && forRes" class="row">
+                        <a style="color: white;" class="btn btn-danger btn-block" (click)="LoginFirst()">Log in to
+                            Reserve</a>
+                    </div>
+                    <div *ngIf="!forRes" class="row">
+                        <a style="color: white;" href="#" class="btn btn-danger btn-block">Not Availble Search Again</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-lg-8">
+            <h3>Description</h3>
+            <p>{{data?.description}}</p>
+        </div>
+        <div class="col-lg-4">
+            <h6>More Details ?</h6>
+            <div *ngIf="!LoggedIn" class="row">
+                <button class="btn btn-danger" (click)="LoginFirst()">Log in to Message Host</button>
+            </div>
+            <div *ngIf="LoggedIn" class="row">
+                <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenterMsg" (click)="onReply(data?.user_id,data?.house_name,data?.username)">Message Host Now!</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Amenities</h3>
+            <div class="row">
+                <ul class="d-md-none">
+                    <div *ngIf="wifi">
+                        <li><img src="../../assets/wifi-black-18dp.svg" alt="">Wifi</li>
+                    </div>
+                    <div *ngIf="!wifi">
+                        <li style="text-decoration:line-through;"><img src="../../assets/wifi-black-18dp.svg" alt="">Wifi</li>
+                    </div>
+                    <div *ngIf="tv">
+                        <li><img src="../../assets/tv-black-18dp.svg" alt="">TV</li>
+                    </div>
+                    <div *ngIf="!tv">
+                        <li style="text-decoration:line-through;"><img src="../../assets/tv-black-18dp.svg" alt="">TV
+                        </li>
+                    </div>
+                    <div *ngIf="elevator">
+                        <li><img src="../../assets/elevator-black-18dp.svg" alt="">Elevator</li>
+                    </div>
+                    <div *ngIf="!elevator">
+                        <li style="text-decoration:line-through;"><img src="../../assets/elevator-black-18dp.svg" alt="">Elevator</li>
+                    </div>
+                    <div *ngIf="parking">
+                        <li><img src="../../assets/local_parking-black-18dp.svg" alt="">Parking</li>
+                    </div>
+                    <div *ngIf="!parking">
+                        <li style="text-decoration:line-through;"><img src="../../assets/local_parking-black-18dp.svg" alt="">Parking</li>
+                    </div>
+                    <div *ngIf="cooling">
+                        <li><img src="../../assets/ac_unit-black-18dp.svg" alt="">Air Conditioning</li>
+                    </div>
+                    <div *ngIf="!cooling">
+                        <li style="text-decoration:line-through;"><img src="../../assets/ac_unit-black-18dp.svg" alt="">Air Conditioning</li>
+                    </div>
+                    <div *ngIf="heating">
+                        <li><img src="../../assets/fireplace-black-18dp.svg" alt="">Heating</li>
+                    </div>
+                    <div *ngIf="!heating">
+                        <li style="text-decoration:line-through;"><img src="../../assets/fireplace-black-18dp.svg" alt="">Heating</li>
+                    </div>
+                    <div *ngIf="oven">
+                        <li> <img src="../../assets/microwave-black-18dp.svg" alt="">Oven</li>
+                    </div>
+                    <div *ngIf="!oven">
+                        <li style="text-decoration:line-through;"><img src="../../assets/microwave-black-18dp.svg" alt="">Oven</li>
+                    </div>
+                </ul>
+                <div class="col-md-6 d-none d-md-block">
+                    <ul>
+                        <div *ngIf="wifi">
+                            <li><img src="../../assets/wifi-black-18dp.svg" alt="">Wifi</li>
+                        </div>
+                        <div *ngIf="!wifi">
+                            <li style="text-decoration:line-through;"><img src="../../assets/wifi-black-18dp.svg" alt="">Wifi</li>
+                        </div>
+                        <div *ngIf="tv">
+                            <li><img src="../../assets/tv-black-18dp.svg" alt="">TV</li>
+                        </div>
+                        <div *ngIf="!tv">
+                            <li style="text-decoration:line-through;"><img src="../../assets/tv-black-18dp.svg" alt="">TV</li>
+                        </div>
+                        <div *ngIf="elevator">
+                            <li><img src="../../assets/elevator-black-18dp.svg" alt="">Elevator</li>
+                        </div>
+                        <div *ngIf="!elevator">
+                            <li style="text-decoration:line-through;"><img src="../../assets/elevator-black-18dp.svg" alt="">Elevator</li>
+                        </div>
+                        <div *ngIf="parking">
+                            <li><img src="../../assets/local_parking-black-18dp.svg" alt="">Parking</li>
+                        </div>
+                        <div *ngIf="!parking">
+                            <li style="text-decoration:line-through;"><img src="../../assets/local_parking-black-18dp.svg" alt="">Parking</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="col-md-6 d-none d-md-block">
+                    <ul>
+                        <div *ngIf="cooling">
+                            <li><img src="../../assets/ac_unit-black-18dp.svg" alt="">Air Conditioning</li>
+                        </div>
+                        <div *ngIf="!cooling">
+                            <li style="text-decoration:line-through;"><img src="../../assets/ac_unit-black-18dp.svg" alt="">Air Conditioning</li>
+                        </div>
+                        <div *ngIf="heating">
+                            <li><img src="../../assets/fireplace-black-18dp.svg" alt="">Heating</li>
+                        </div>
+                        <div *ngIf="!heating">
+                            <li style="text-decoration:line-through;"><img src="../../assets/fireplace-black-18dp.svg" alt="">Heating</li>
+                        </div>
+                        <div *ngIf="oven">
+                            <li> <img src="../../assets/microwave-black-18dp.svg" alt="">Oven</li>
+                        </div>
+                        <div *ngIf="!oven">
+                            <li style="text-decoration:line-through;"><img src="../../assets/microwave-black-18dp.svg" alt="">Oven</li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-8">
+            <h3>House rules</h3>
+            <p>{{data?.extra_info}}</p>
+        </div>
+    </div>
+    <hr>
+    <h3>Latest Reviews</h3>
+    <div class="row ">
+        <div class="col-lg-6 comment" id="review" *ngFor=" let rev of reviews;  let i=index">
+            <div *ngIf="i<4">
+                <h5>{{rev.username}}</h5>
+                <div *ngIf="rev.grade==5">
+                    <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                </div>
+                <div *ngIf="rev.grade==4">
+                    <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="far fa-star"></i>
+                </div>
+                <div *ngIf="rev.grade==3">
+                    <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>
+                </div>
+                <div *ngIf="rev.grade==2">
+                    <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>
+                </div>
+                <div *ngIf="rev.grade==1">
+                    <i class="fas fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>
+                </div>
+                <div>{{rev.text}}</div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="text-center" *ngFor=" let rev of reviews;  let i=index">
+        <button *ngIf="i>3" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalCenter">See all Reviews</button>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Map</h3>
+            <div class="map" id="map"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">All Reviews</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 comment" *ngFor=" let rev of reviews;  let i=index">
+                        <h5>{{rev.username}}</h5>
+                        <div *ngIf="rev.grade==5">
+                            <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                        </div>
+                        <div *ngIf="rev.grade==4">
+                            <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="far fa-star"></i>
+                        </div>
+                        <div *ngIf="rev.grade==3">
+                            <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>
+                        </div>
+                        <div *ngIf="rev.grade==2">
+                            <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>
+                        </div>
+                        <div *ngIf="rev.grade==1">
+                            <i class="fas fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>
+                        </div>
+                        <div>{{rev.text}}</div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenterMsg" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ask anything about {{about}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="onSend()" #sendform="ngForm">
+                <div class="modal-body">
+                    <textarea class="form-control" name="message" type="input" cols="40" rows="5" placeholder="" required ngModel></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

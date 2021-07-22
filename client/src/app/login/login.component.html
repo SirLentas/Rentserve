@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Login</h2>
+                    <div class="alert-danger text-center" role="alert">
+                        {{ message }}
+                      </div>
+                    <form (ngSubmit)="onLoginSubmit()" #loginform="ngForm">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="username" class="form-control" required ngModel>
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" required ngModel>
+                        </div>
+                        <button class="btn btn-danger btn-block" type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

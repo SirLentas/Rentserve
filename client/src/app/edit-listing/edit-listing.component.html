@@ -1,0 +1,82 @@
+<h1 class="text-center">Editing {{name}}</h1>
+<div class="container">
+    <div class="row top-container">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 map" id="map"></div>
+        <div class="col-md-1"></div>
+    </div>
+    <form (ngSubmit)="onEditListing()" #editform="ngForm">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="min_days">Minimun Number of Days</label>
+                    <input class="form-control" type="number" name="min_days" id="min_days"  value='{{minDays}}' min="1" ngModel />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" min="{{today}}" type="date" id="a_from" name="a_from" ngModel required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" min="{{today1}}"  type="date" id="a_to" name="a_to" ngModel required>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <input class="form-control" type="number" id="guests" name="guests" ngModel value="{{capacity}}" min="1" step="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="cost">Cost per Night</label>
+                    <input class="form-control" type="number" name="cost" id="cost" ngModel value="{{cost}}" min="1" required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="alert alert-warning alert-dismissible">Don't forget to choose Amenities again!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <input type="checkbox" id="wifi" name="wifi" value="true" ngModel>
+                        <label for="wifi"> Wifi </label><br>
+                        <input type="checkbox" id="oven" name="oven" value="true" ngModel>
+                        <label for="ven"> Oven </label><br>
+                        <input type="checkbox" id="heating" name="heating" value="true" ngModel>
+                        <label for="heating"> Heating </label><br>
+                        <input type="checkbox" id="cooling" name="cooling" value="true" ngModel>
+                        <label for="cooling"> Cooling </label><br>
+                    </div>
+                    <div class="col-4">
+                        <input type="checkbox" id="tv" name="tv" value="true" ngModel>
+                        <label for="tv"> TV </label><br>
+                        <input type="checkbox" id="parking" name="parking" value="true" ngModel>
+                        <label for="parking"> Parking </label><br>
+                        <input type="checkbox" id="elevator" name="elevator" value="true" ngModel>
+                        <label for="elevator"> Elevator </label> <br>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="des">Listing Description</label>
+                    <input class="form-control" type="text" name="des" id="des" value='{{desc}}' ngModel>
+                </div>
+                <div class="form-group">
+                    <label for="info">Info & Rules</label>
+                    <input class="form-control" type="text" name="info" id="info" value='{{info}}' ngModel>
+                </div>
+                <div class="form-group">
+                    <label for="housePics">Select images:</label><br>
+                    <input type="file" multiple name="profile" (change)="onFileSelect($event)" accept="images/*" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8"></div>
+            <div class="col-lg-4">
+                <div class="alert-warning text-center" role="alert">
+                    {{ message }}
+                  </div>
+                <button type="submit" class="btn btn-danger btn-block">Save Changes</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,80 @@
+<div class="container" id="filters" style="background-color: white;">
+    <form (ngSubmit)="onFilterSubmit()" #filterform="ngForm">
+        <div class="row">
+            <div class="col-md-4 text-center ">
+                <label for="min-price">Minimum Price</label>
+                <input type="text" id="min_price" name="min_price" ngModel>
+                <label for="max-price">Maximum Price</label>
+                <input type="text" id="max_price" name="max_price" ngModel>
+            </div>
+
+            <div class="col-md-4 text-center">
+                <label for="h_type">Type of house</label><br>
+                <select id="h_type" name="h_type" ngModel> 
+                    <option value="any">Any</option>
+                    <option value="private">Private Room</option>
+                    <option value="public">Public Room</option>
+                    <option value="house">House</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <input type="checkbox" id="wifi" name="wifi" value="true" ngModel>
+                <label for="wifi">Wifi</label>
+
+                <input type="checkbox" id="oven" name="oven" value="true" ngModel>
+                <label for="oven">Oven</label>
+
+                <input type="checkbox" id="heating" name="heating" value="true" ngModel>
+                <label for="heating">Heating</label>
+
+                <input type="checkbox" id="cooling" name="cooling" value="true" ngModel>
+                <label for="cooling">Cooling</label>
+
+                <input type="checkbox" id="tv" name="tv" value="true" ngModel>
+                <label for="tv">TV</label>
+
+                <input type="checkbox" id="parking" name="parking" value="true" ngModel>
+                <label for="parking">Parking</label>
+
+                <input type="checkbox" id="elevator" name="elevator" value="true" ngModel>
+                <label for="elevator">Elevator</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center">
+                <button class="btn btn-danger btn-block" type="submit">Filter</button>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div style="margin-bottom: 0.5cm;" class="col-md-4" *ngFor="let house of data | paginate: {id:'listing-pagination',itemsPerPage:10,currentPage:page,totalItems:totalRecords}">
+            <div class="card">
+                <div class="card-body btn" (click)="navToHouse(house?.house_id)">
+                    <img class="img-thumbnail" src="../../assets/public/house_pics/{{house?.images[0]}}" alt="">
+                    <hr>
+                    <h4 class="text-center">
+                        {{house?.house_name}}
+                    </h4>
+                    <hr>
+                    <div class="col">
+                        <div>{{house?.city}}, {{house?.country}}</div>
+                        <div style="text-transform: capitalize;" >{{house?.house_type}}</div>
+                        <div>{{house?.capacity}} guests</div>
+                        <div>House Rating: {{house?.avgrating}} <i *ngIf="house?.avgrating!=null" class="fas fa-star"></i> </div>
+                        <div>Cost per Night: {{house?.cost}} $</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="nav">
+    <pagination-controls id="listing-pagination" maxSize="5" directionLinks="true" (pageChange)="page=$event"></pagination-controls>
+</div>

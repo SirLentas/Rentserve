@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+
+$primary: rgba(24,26,27,0.8);
+
+body{
+    margin: 0;
+    font-family: 'Alata', sans-serif;
+}
+
+.content {
+    position: absolute;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+} 
+
+#bg{
+    z-index: -1;
+    position: fixed;
+    width: 100%;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo{
+    width: 15%;
+    height: 15%;
+}
+
+nav{
+    background: $primary;
+    align-items: center;
+    .navbar-brand{
+        width: 200px;
+    }
+
+    ul {
+        list-style-type: none;
+
+        li {
+            padding: 1em;
+        }
+    }
+}
+
+#footer-logo{
+    width: 15%;
+    height: 15%;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

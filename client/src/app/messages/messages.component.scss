@@ -1,0 +1,47 @@
+.container {
+    background-color: white;
+    margin-top: 4cm;
+    margin-bottom: 1cm;
+    border-radius: 10px;
+    padding-bottom: 0.5cm;
+}
+
+#sent {
+    margin-top: 0;
+}
+
+.messages {
+    word-wrap: break-word;
+    div {
+        margin: 0.3cm 0;
+    }
+    .col-2 {
+        span {
+            font-size: xx-small;
+        }
+    }
+    .col-6 {
+        border-radius: 10px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 2px 2px rgba(0, 0, 0, .2);
+    }
+    .btn {
+        margin-top: 0.6cm;
+        margin-right: 0.2cm;
+    }
+    h2 {
+        padding-top: 0.5cm;
+    }
+    label {
+        font-weight: 600;
+    }
+}
+
+.modal {
+    word-wrap: break-word;
+    .modal-body {
+        margin: 0.1cm;
+        textarea {
+            margin-top: 0.5cm
+        }
+    }
+}

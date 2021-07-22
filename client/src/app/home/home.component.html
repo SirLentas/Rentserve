@@ -1,0 +1,52 @@
+<div class="container submit-form">
+    <div class="row">
+        <div class="col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Get out and stretch your imagination</h3>
+                    <div class="alert-warning text-center" role="alert">
+                        {{ message }}
+                      </div>
+                    <form (ngSubmit)="onSearchSubmit()" #searchform="ngForm">
+                        <div class="form-group">
+                            <label for="location">Where to</label>
+                            <input type="text" class="form-control" id="location" name="location" placeholder="Athina" required ngModel>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="Start Date">Check in Date</label>
+                                    <input type="date" min="{{today}}" class="form-control" id="arr_day" name="arr_day" value="" required ngModel>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="End date">Check out</label>
+                                    <input (click)="test()" type="date" min="{{today1}}" class="form-control" id="dep_day" name="dep_day" value="" required ngModel>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <label for="guests">Guests</label>
+                                    <select class="form-control" id="guests" name="guests" required [(ngModel)]='nrSelect'>
+                                      <option value="1">1 guest</option>
+                                      <option value="2">2 guests</option>
+                                      <option value="3">3 guests</option>
+                                      <option value="4">4 guests</option>
+                                      <option value="5">5 guests</option>
+                                      <option value="6">6 guests</option>
+                                      <option value="7">7 guests</option>
+                                      <option value="8">8 guests</option>
+                                      <option value="9">9 guests</option>
+                                      <option value="10">10 guests</option>
+                                      <option value="11">11 guests</option>
+                                      <option value="12">12 guests</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn btn-danger btn-block" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

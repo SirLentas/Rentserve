@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Register</h2>
+                    <div class="alert-warning">{{ message }}</div>
+                    <form (ngSubmit)="onRegisterSubmit()" #registerform="ngForm">
+                        <div class="form-group">
+                            <label for="name">Username</label>
+                            <input type="text" class="form-control" name="name" id="name" required ngModel>
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="email" id="email" required ngModel ng-model="user.email">
+                            <label for="phone">Phone</label>
+                            <input type="phone" class="form-control" name="phone" id="phone" required ngModel>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" name="password" id="password" required ngModel>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="password2">Confirm Password</label>
+                                    <input type="password" class="form-control" name="password2" id="password2" required ngModel>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label for="HostApplication">Submit Host Application</label><br>
+                                    <input type="checkbox" name="HostApplication" id="HostApplication" value="true" ngModel/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-danger btn-block"> Register </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

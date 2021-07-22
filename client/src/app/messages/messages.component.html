@@ -1,0 +1,64 @@
+<div class="container messages">
+    <h2>Received</h2>
+    <div *ngFor="let in_m of in">
+        <div class="row justify-content-around">
+            <div class="col-3 col-md-2 col-lg-1 text-center">
+                <img class="rounded-circle img-thumbnail" src="../../assets/public/profile_pics/{{in_m?.profile_pic}}" alt="">
+                <span>{{in_m?.username}}</span>
+            </div>
+            <div class="col-6 col-md-5">
+                <label>{{in_m?.about}}</label>
+                <p>
+                    {{in_m?.text}}
+                </p>
+
+            </div>
+            <div class="col-3 text-center">
+                <button class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModalCenter" (click)="onReply(in_m?.user_id,in_m?.about,in_m?.username)">Reply</button>
+                <button class="btn btn-outline-danger" (click)="onDelete(in_m?.message_id)"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container messages" id="sent">
+    <h2>Sent</h2>
+    <div *ngFor="let out_m of out">
+        <div class="row justify-content-around">
+            <div class="col-3 col-md-2 col-lg-1 text-center">
+                <img class="rounded-circle img-thumbnail" src="../../assets/public/profile_pics/{{out_m?.profile_pic}}" alt="">
+                <span>{{out_m?.username}}</span>
+            </div>
+            <div class="col-6 col-md-5">
+                <label>{{out_m?.about}}</label>
+                <p>
+                    {{out_m?.text}}
+                </p>
+            </div>
+            <div class="col-3 text-center">
+                <button class="btn btn-outline-danger" (click)="onDelete(out_m?.message_id)"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Replying to {{send_to}} about {{about}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="onSend()" #sendform="ngForm">
+                <div class="modal-body">
+                    <textarea class="form-control" name="message" type="input" cols="40" rows="5" placeholder="" required ngModel></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

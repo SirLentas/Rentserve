@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Profile</h2>
+                    <img style="width: 100%; height: auto;" class="img-thumbnail" src="{{route}}" alt="">
+                    <hr>
+                    <form [formGroup]="uploadForm" (ngSubmit)="onPicUpdate()">
+                        <div>
+                            <input type="file" name="profile" (change)="onFileSelect($event)" />
+                        </div>
+                        <div class="text-right">
+                            <div>{{ message }}</div>
+                            <button type="submit" class="btn btn-dark">Update Photo</button>
+                        </div>
+                    </form>
+                    <hr>
+                    <h3 class="text-center">{{username}}</h3>
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="name">Email</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" value="{{email}}" disabled>
+                        </div>
+                    </div>
+                    <form (ngSubmit)="onPasswordUpdate()" #updateform="ngForm">
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="password">Current password</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="password" name="password" id="password" required ngModel>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="password1">New password</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="password" name="password1" id="password1" required ngModel>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="password2">Confirm new password</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="password" name="password2" id="password2" required ngModel>
+                            </div>
+                        </div>
+                        <div class="text-center alert-warning">{{ pass_message }}</div>
+                        <button type="submit" class="btn btn-danger btn-block">Change Password</button>
+                    </form>
+                    <hr>
+                    <div class="text-center alert-success">{{ app_message }}</div>
+                    <div class="text-right">
+                        <button *ngIf="!host" (click)="onApplyHost()" class="btn btn-success">Apply For Host</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
